@@ -1,0 +1,225 @@
+/* author:Deepika Priyanka
+Date: 07/27/2016
+Description: css file for index.html
+*/
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="index.css"/>    
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="app.js"></script>    
+<body>
+
+<div class="module" ng-app="myApp" ng-controller="amenityCtrl">
+    
+    <header class="module-header">
+      <span class="line"></span>
+      <!--widget title-->
+      <span class="title">Top Rated Amenities In and Around [Listing Name]</span>
+	</header>	   
+    <div class="module-wrapper">
+        <div class="panel">
+            <section class="amen-body">
+                <div class ="amenities-list-panel">
+                    <!--Image rectangle -->
+                    <article class="image-panel ">
+                        <!--Panel Title-->
+                        <div class="panel_title">What’s the highest rated restaurant?	</div>
+					        <div class="panel_location">
+					            <i class="fa fa-map-marker greenicons"></i>{{resdata[current].location.city}}
+                             {{resdata[current].location.state_code}}
+                            {{resdata[current].location.postal_code}}
+					        </div>
+                            <!--Navugation button and profile image-->
+					        <div class="panel_middlecontainer">
+					            <div class="nav-btn-left" ng-click="prev()"><i class="fa fa-angle-left"></i></div>
+					            <a class="profile-image" href="{{resdata[current].url}}" style="background-image: url('{{resdata[current].image_url}}')">
+					              <!--image hover-->
+					              <div class="view-profile">
+					                <div class="profile_txt1">VIEW ON</div>
+					                <div class="profile_txt2">YELP</div>
+					              </div>
+					            </a>
+                                <div class="nav-btn-left nav-btn-rgt" ng-click=next()><i class="fa fa-angle-right"></i>
+                                </div>
+                            </div>
+                            <!-- Name of the Amenity-->
+				            <div class="amenity-name"> {{resdata[current].name}}</div>
+				            <!--Address-->
+				            <div class="amenity-addr"> {{resdata[current].location.address}}
+                            {{resdata[current].location.state_code}}
+                            {{resdata[current].location.postal_code}}
+                            </div>
+				            <!-- button for linen pattern rectangle-->
+				            <a href="#">
+				              <div class="image-panel_button">
+				                <span class="fa-stack fa-lg home">
+				                  <i class="fa fa-circle fa-stack-2x"></i>
+				                  <i class="fa fa-home fa-stack-1x fa-inverse"></i>
+				                </span>
+				                <span class="listtext">See The List </span><i class="fa fa-angle-right listtext"></i>
+				              </div>
+				            </a>
+				            <!-- Down arrow -->
+				            <span class="down-arrow"> </span>
+                    </article>
+                </div>
+                  <!-- Amenity lists at the bottom of the panel-->
+                <article class="amenities-types">
+                    <div class="alist">
+			                <div class="aicon" >
+			                    <i class="fa fa-cutlery"></i>
+			                </div>
+			                <div class="atxt">
+			                    <div>Restaurants</div>
+			                    <div>{{rtot}} near this listing</div>
+			                </div>
+			                <a class="aview" href="#">
+			                <span>See All</span>
+			                <i class="fa fa-angle-right listarrow"></i>
+			                </a>
+			          </div>
+                    <!--   Second row in list    -->
+                      <div class="alist">
+			                <div class="aicon" >
+			                    <i class="fa fa-shopping-cart"></i>
+			                </div>
+			                <div class="atxt">
+			                    <div> Groceriers Store</div>
+			                    <div>{{gtot}} near this listing</div>
+			                </div>
+			                <a class="aview" href="#">
+			                <span>See All</span>
+			                <i class="fa fa-angle-right listarrow"></i>
+			                </a>
+			          </div> 
+                     <!--   Third row in list    -->  
+                      <div class="alist">
+			                <div class="aicon" >
+			                    <i class="fa fa-dollar"></i>
+			                </div>
+			                <div class="atxt">
+			                    <div>Banks</div>
+			                    <div>{{btot}} near this listing</div>
+			                </div>
+			                <a class="aview" href="#">
+			                <span>See All</span>
+			                <i class="fa fa-angle-right listarrow"></i>
+			                </a>
+			          </div>
+                       <!--   last row in list    -->               
+			          <div class="alist">
+			                <div class="aicon" >
+			                    <i class="fa fa-dot-circle-o etc" aria-hidden="true"></i>
+			                    <i class="fa fa-dot-circle-o etc" aria-hidden="true"></i>
+			                    <i class="fa fa-dot-circle-o etc" aria-hidden="true"></i>
+			                </div>
+			                <div class="atxt">
+			                    <div>Other Aminities</div>
+			                    <div>2456 near this listing</div>
+			                </div>
+			                <a class="aview" href="#">
+			                <span>See All</span>
+			                <i class="fa fa-angle-right listarrow"></i>
+			                </a>
+			          </div>
+			          <div class="footer">
+				          <button class="fbutton">
+				            <span class="fa-stack fa-lg home">
+				              <i class="fa fa-circle fa-stack-2x"></i>
+				              <i class="fa fa-home fa-stack-1x fa-inverse"></i>
+				            </span>
+				            <span class="listtext">See All Eminities</span>
+				            <i class="fa fa-angle-right listtext"></i>
+				          </button>
+				      </div>    
+                </article>      		
+            </section>
+            <!-- Right panel oof widget -->
+	    		<aside class="amen-rightbar">
+	    			<div class="rightbar">
+                		<i class="fa fa-angle-up uparrow"></i>
+            		</div>
+            <!-- Begin: Module Tiles of Nearby amenities frame-->    
+            		<div class="module-tile">
+            			<div class="default">
+                			<div class="share"><i class="fa fa-share"></i></div>
+                			<div class="container">
+			                  <div class="ticon">
+			                    <i class="fa fa-cutlery"></i>
+			                  </div>
+			                  <div class="ttext">
+			                    Nearby Restaurants
+			                  </div>
+			                </div>
+            		</div>
+                  <!--Hover effects for the tiles-->        
+            		<a class="tlink" href="#">
+		                <div class="thover">
+		                  <div class="tname">
+		                    <i class="fa fa-cutlery"></i>Nearby Restaurants
+		                  </div>
+		                  <button class="tbutton">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+		                </div>
+		             </a>
+	    		</div>
+	    		     <!--Tile 2  -->
+	    		<div class="module-tile">
+            			<div class="default">
+                			<div class="container">
+			                  <div class="ticon">
+			                    <i class="fa fa-cutlery"></i>
+			                  </div>
+			                  <div class="ttext">
+			                    Nearby Groceries
+			                  </div>
+			                </div>
+            		</div>
+              <!--Hover effects for the tiles-->        
+            		<a class="tlink" href="#">
+		                <div class="thover">
+		                  <div class="tname">
+		                    <i class="fa fa-cutlery"></i>Nearby Groceries
+		                  </div>
+		                  <button class="tbutton">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+		                </div>
+		             </a>
+	    		</div>
+	    		     <!-- tile 3  -->
+	    		<div class="module-tile">
+            			<div class="default">
+                			<div class="container">
+			                  <div class="ticon">
+			                    <i class="fa fa-cutlery"></i>
+			                  </div>
+			                  <div class="ttext">
+			                    Nearby Banks
+			                  </div>
+			                </div>
+            		</div>
+              <!--Hover effects for the tiles-->        
+            		<a class="tlink" href="#">
+		                <div class="thover">
+		                  <div class="tname">
+		                    <i class="fa fa-cutlery"></i>Nearby Banks
+		                  </div>
+		                  <button class="tbutton">OPEN PAGE <i class="fa fa-mail-forward"></i></button>
+		                </div>
+		             </a>
+	    		</div>
+	    		<div class="rightbar">
+             		<i class="fa fa-angle-down uparrow"></i>
+         		</div>
+	    	</aside>
+        </div>
+        <footer class="yelp">
+	        <span>Aminity information provided by</span>
+	        <span class="ylptxt">yelp</span>
+	        <i class="fa fa-yelp ylpicon"></i>
+	    </footer>
+	</div>    
+</div>
+</body>
+</html>
+
+
